@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { useFirebase } from "../context/Firebase";
 
 const RegisterPage = () => {
-    const firebase = useFirebase();
+    const firebase = useFirebase();     // instances
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -15,14 +15,14 @@ const RegisterPage = () => {
     
     useEffect(() => {
         if (firebase.isLoggedIn){
-         // Navigate to home
-         navigate("/");
+                                         // Navigate to home if user SignedIN
+         navigate("/");                         
         }
      }, [firebase, navigate ])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-       console.log("signin up user"); 
+       console.log("signin up user");           // For signIn 
         const result = await firebase.signupUserWithEmailAndPassword(email, password);
         console.log("Success", result)
     };
